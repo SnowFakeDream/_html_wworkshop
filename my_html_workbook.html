@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script>
+    function showPosition() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                document.getElementById("result").innerHTML = positionInfo;
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+    }
+</script>
+</head>
 <body>
 <form action="profile.html"
 method="get"
@@ -11,9 +25,9 @@ accept-charset="utf-8">
   <input type="text" id="ID" name="ID"><br>
   <input type="submit" value="Submit">
   <iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=v241ocXt7DU&t=10221s?autoplay=1&mute=1">
+src="https://youtu.be/v241ocXt7DU?autoplay=1&mute=1">
 </iframe>
-
+<button type="button" onclick="showPosition();">Show Position</button>
   
 </form>
 </body>
