@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#div1, #div2 {
+  float: left;
+  width: 100px;
+  height: 35px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+</style>
 <script>
     function showPosition() {
         if(navigator.geolocation) {
@@ -12,6 +22,20 @@
             alert("Sorry, your browser does not support HTML5 geolocation.");
         }
     }
+    
+    function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
 </script>
 </head>
 <body>
@@ -27,7 +51,14 @@ accept-charset="utf-8">
   <iframe width="420" height="315"
 src="https://youtu.be/v241ocXt7DU?autoplay=1&mute=1">
 </iframe>
+
 <button type="button" onclick="showPosition();">Show Position</button>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
   
 </form>
 </body>
